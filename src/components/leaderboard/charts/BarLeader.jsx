@@ -2,7 +2,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 
-const BranchChart = ({ seriesData, type }) => {
+const BarLeader = ({ seriesData, type }) => {
     const sortedData = Object.entries(seriesData)
         .sort((a, b) => b[1] - a[1]).slice(0, 10)
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
@@ -12,7 +12,7 @@ const BranchChart = ({ seriesData, type }) => {
             type: 'column',
         },
         title: {
-            text: type === 'food' ? 'ITEM' : 'TOP 10 BRANCH',
+            text: type === 'food' ? 'ITEM' : 'TOP 10 BRANCHES',
         },
         legend: {
             enabled: false
@@ -49,9 +49,9 @@ const BranchChart = ({ seriesData, type }) => {
     );
 };
 
-BranchChart.propTypes = {
+BarLeader.propTypes = {
     seriesData: PropTypes.object.isRequired,
     type: PropTypes.string,
 };
 
-export default BranchChart;
+export default BarLeader;

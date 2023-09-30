@@ -7,7 +7,6 @@ export const loginUser = credentials => async (dispatch) => {
         dispatch(setLoginRequesting());
 
         const { data } = await http.post(`auth/login`, credentials);
-
         http.setAuthToken(data?.token);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch(setUserInfo(data));

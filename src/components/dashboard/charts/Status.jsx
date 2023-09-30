@@ -63,8 +63,8 @@ const StatusChart = ({ seriesData, isRequesting }) => {
 };
 
 StatusChart.propTypes = {
-    seriesData: PropTypes.object.isRequired,
-    isRequesting: PropTypes.bool.isRequired,
+    seriesData: PropTypes.any,
+    isRequesting: PropTypes.bool,
 };
 
 export default StatusChart;

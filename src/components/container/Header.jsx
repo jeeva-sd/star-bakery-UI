@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { Dialog } from '@headlessui/react';
 import { SiCodechef } from 'react-icons/si';
 import { AiOutlineBars, AiOutlineClose } from 'react-icons/ai';
@@ -8,11 +9,14 @@ import DatePicker from '../../widgets/DatePicker';
 const menuList = [
     { name: 'Dashboard', path: '/home/dashboard' },
     { name: 'LeaderBoard', path: '/home/leader-board' },
+    { name: 'Report', path: '/home/report' },
 ];
 
 const Header = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const hasReport = useMemo(() => location?.pathname?.includes('report'), [location]);
 
     return (
         <header
@@ -47,8 +51,8 @@ const Header = () => {
                         </NavLink>
                     ))}
 
-                    <div className='border h-10'></div>
-                    <DatePicker />
+                    <div className="border h-10"></div>
+                    <DatePicker hasReport={hasReport} />
                 </div>
             </nav>
 

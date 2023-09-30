@@ -13,9 +13,10 @@ import Login from './components/container/Login';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './components/dashboard';
 import ProtectedRoute from './extensions/ProtectedRoute';
 import LeaderBoard from './components/leaderboard';
+import Report from './components/report';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "leader-board",
         element: <ProtectedRoute Component={LeaderBoard} />,
+      },
+      {
+        path: "report",
+        element: <ProtectedRoute Component={Report} />,
       },
     ],
   },

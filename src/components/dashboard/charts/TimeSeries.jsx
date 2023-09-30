@@ -104,9 +104,9 @@ const OrderCountOverTimeChart = ({ seriesData, type, isRequesting }) => {
 };
 
 OrderCountOverTimeChart.propTypes = {
-    seriesData: PropTypes.object.isRequired,
-    type: PropTypes.string.isRequired,
-    isRequesting: PropTypes.bool.isRequired,
+    seriesData: PropTypes.any.isRequired,
+    type: PropTypes.string,
+    isRequesting: PropTypes.bool,
 };
 
 export default OrderCountOverTimeChart;
