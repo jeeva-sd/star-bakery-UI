@@ -13,7 +13,7 @@ function Login() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        userInfo?.isAuthenticated ? navigate('/home/dashboard') : null;
+        userInfo?.isAuthenticated ? navigate('/home/orders') : null;
     }, [userInfo, navigate]);
 
     const handleLogin = async (e) => {

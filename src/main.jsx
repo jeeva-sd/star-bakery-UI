@@ -17,6 +17,7 @@ import Dashboard from './components/dashboard';
 import ProtectedRoute from './extensions/ProtectedRoute';
 import LeaderBoard from './components/leaderboard';
 import Report from './components/report';
+import Orders from './components/orders';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "report",
         element: <ProtectedRoute Component={Report} />,
+      },
+      {
+        path: "orders",
+        element: <ProtectedRoute Component={Orders} />,
       },
     ],
   },

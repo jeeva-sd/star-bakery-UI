@@ -35,8 +35,23 @@ const orderSlice = createSlice({
 
             state.dateParams = [start, end];
         },
+        addOrder: (state, action) => {
+            const payload = action.payload ? action.payload : null;
+            if (payload) {
+                state.list = [...state.list, payload];
+            }
+        },
+        updateOrder: (state, action) => {
+            const payload = action.payload ? action.payload : null;
+            if (payload) {
+                state.list = state.list.map(e => {
+                    if (e._id === payload._id) return payload;
+                    return e;
+                });
+            }
+        },
     },
 });
 
-export const { setRequesting, setOrders, updateDateParams } = orderSlice.actions;
+export const { setRequesting, setOrders, updateDateParams, addOrder, updateOrder } = orderSlice.actions;
 export default orderSlice.reducer;

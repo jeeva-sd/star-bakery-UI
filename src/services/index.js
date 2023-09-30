@@ -1,6 +1,7 @@
+import { toast } from 'react-toastify';
 import { http } from "../extensions";
 import { setUserInfo, setLoginRequesting } from '../store/reducers/authReducer';
-import { setRequesting, setOrders } from "../store/reducers/orderReducer";
+import { setRequesting, setOrders, addOrder, updateOrder } from "../store/reducers/orderReducer";
 
 export const loginUser = credentials => async (dispatch) => {
     try {
@@ -23,6 +24,34 @@ export const fetchOrders = () => async (dispatch) => {
         const { data } = await http.get(`order`);
         dispatch(setOrders(data));
     } catch (error) {
+        console.log('Error fetching posts:', error);
+    }
+};
+
+export const createOrder = (order, cb) => async (dispatch) => {
+    try {
+        const { data } = await http.post(`order`, order);
+        if (data) {
+            cb();
+            dispatch(addOrder(data));
+            toast.info('Order Created!', { position: toast.POSITION.TOP_RIGHT });
+        }
+    } catch (error) {
+        cb();
+        console.log('Error fetching posts:', error);
+    }
+};
+
+export const editOrder = (order, cb) => async (dispatch) => {
+    try {
+        const { data } = await http.put(`order/${order._id}`, order);
+        if (data) {
+            cb();
+            dispatch(updateOrder(order));
+            toast.info('Order Updated!', { position: toast.POSITION.TOP_RIGHT });
+        }
+    } catch (error) {
+        cb();
         console.log('Error fetching posts:', error);
     }
 };

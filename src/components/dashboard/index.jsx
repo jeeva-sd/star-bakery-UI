@@ -78,7 +78,8 @@ const Dashboard = () => {
                 const endDate = moment(dateParams[1]);
                 const dateToCheck = moment(e);
 
-                return dateToCheck.isBetween(startDate, endDate);
+                const isWithinRange = dateToCheck.isSame(startDate, 'day') || dateToCheck.isBetween(startDate, endDate, null, '[]');
+                return isWithinRange;
             })
             .sort((a, b) => new Date(a).valueOf() - new Date(b).valueOf())
             .forEach((timestamp) => {
