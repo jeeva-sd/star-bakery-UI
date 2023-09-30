@@ -24,7 +24,7 @@ const OrderCountOverTimeChart = ({ seriesData, type, isRequesting }) => {
                 },
                 yAxis: {
                     title: {
-                        text: 'Number of Orders',
+                        text: type !== 'order' ? 'Revenue' : 'Number of Orders',
                     },
                 },
                 legend: {

@@ -20,7 +20,7 @@ const BarLeader = ({ seriesData, type }) => {
         xAxis: {
             categories: type === 'food' ? Object.keys(seriesData) : Object.keys(sortedData),
             title: {
-                text: type === 'food' ? 'ITEM TYPE' : 'Branch Name',
+                text: type === 'food' ? 'Item Type  ' : 'Branch Name',
             },
         },
         credits: { enabled: false },
