@@ -1,16 +1,15 @@
 import { useEffect, useRef } from 'react';
 import Highcharts from 'highcharts';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-const OrderCountOverTimeChart = ({ seriesData, type }) => {
+const OrderCountOverTimeChart = ({ seriesData, type, isRequesting }) => {
     const chartRef = useRef(null);
 
-    // eslint-disable-next-line react/prop-types
     const { orderData, priceData, cakeOrders, cookieOrders, MuffinOrders } = seriesData;
 
     useEffect(() => {
         if (chartRef && chartRef.current) {
-            Highcharts.chart(chartRef.current, {
+            const chart = Highcharts.chart(chartRef.current, {
                 chart: {
                     zoomType: 'x'
                 },
@@ -87,10 +86,27 @@ const OrderCountOverTimeChart = ({ seriesData, type }) => {
                     },
                 ].slice(0, type !== 'order' ? 1 : 5),
             });
+
+            if (isRequesting) chart.showLoading();
+
+            if (!isRequesting && (!priceData?.length > 0 && !orderData?.length > 0)) {
+                chart.renderer.text('No data', type !== 'order' ? 250 : 530, 200)
+                    .css({
+                        color: '#718096',
+                        fontSize: '16px'
+                    })
+                    .add();
+            }
         }
-    }, [type, MuffinOrders, cakeOrders, cookieOrders, orderData, priceData]);
+    }, [type, MuffinOrders, cakeOrders, cookieOrders, orderData, priceData, isRequesting]);
 
     return <div ref={chartRef} />;
+};
+
+OrderCountOverTimeChart.propTypes = {
+    seriesData: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    isRequesting: PropTypes.bool.isRequired,
 };
 
 export default OrderCountOverTimeChart;

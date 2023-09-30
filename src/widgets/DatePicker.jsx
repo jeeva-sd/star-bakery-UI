@@ -10,9 +10,9 @@ const DatePicker = () => {
     const dispatch = useDispatch();
 
     const today = moment();
-    const januaryFirst = moment().startOf('year');
+    const startDay = moment().month(4).date(1).startOf('day');
 
-    const [dateRange, setDateRange] = useState([januaryFirst.toDate(), today.toDate()]);
+    const [dateRange, setDateRange] = useState([startDay.toDate(), today.toDate()]);
     const [startDate, endDate] = dateRange;
 
     return (
@@ -24,6 +24,7 @@ const DatePicker = () => {
                 endDate={endDate}
                 onChange={(update) => {
                     setDateRange(update);
+                    console.log(update, 'update');
                     dispatch(updateDateParams(update));
                 }}
                 withPortal

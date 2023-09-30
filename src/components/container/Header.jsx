@@ -20,7 +20,7 @@ const Header = () => {
             className="border fixed w-full z-10 bg-[hsla(0,0%,100%,.8)] shadow-sm shadow-[#eaeaea]"
         >
             <nav className="flex max-w-full lg:mx-40 items-center justify-between p-6 lg:px-8">
-                <div className="flex lg:flex-1 cursor-pointer" onClick={() => navigate('/')}>
+                <div className="flex lg:flex-1 cursor-pointer" onClick={() => navigate('/home/dashboard')}>
                     <SiCodechef className="h-10 w-10 mx-3" fontSize={30} />
                     <div className='flex items-center text-2xl font-bold'> Start Bakery </div>
                 </div>

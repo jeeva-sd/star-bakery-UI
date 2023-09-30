@@ -6,7 +6,7 @@ const orderSlice = createSlice({
         isRequesting: false,
         list: [],
         dateParams: [
-            "2022-12-31T18:30:00.000Z",
+            "2023-04-30T18:30:00.000Z",
             "2023-09-29T17:38:44.695Z"
         ]
     },

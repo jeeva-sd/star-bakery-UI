@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import BranchChart from './charts/Branch';
 
 const LeaderBoard = () => {
-  const { list, dateParams } = useSelector(state => state.order);
+  const { list, dateParams, isRequesting } = useSelector(state => state.order);
 
   const graphData = useMemo(() => {
     if (!list || list.length === 0) return [];
@@ -43,13 +43,13 @@ const LeaderBoard = () => {
   const { cake, cookie, Muffin } = graphData;
 
   return (
-    <div className='pt-28 flex flex-wrap justify-center w-full bg-slate-50 gap-5'>
+    <div className='pt-28 flex flex-wrap justify-center w-full bg-slate-50 gap-5 mb-5'>
       <div className='w-10/12 bg-white p-5 rounded-md shadow-md'>
-        <BranchChart seriesData={graphData?.branchCount} />
+        <BranchChart seriesData={graphData?.branchCount} isRequesting={isRequesting} />
       </div>
 
       <div className='w-10/12 bg-white p-5 rounded-md shadow-md'>
-        <BranchChart seriesData={{ cake, cookie, Muffin }} type={'food'} />
+        <BranchChart seriesData={{ Muffin, cake, cookie  }} type={'food'} isRequesting={isRequesting} />
       </div>
     </div>
   );

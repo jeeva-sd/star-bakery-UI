@@ -1,15 +1,15 @@
-import  { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Highcharts from 'highcharts';
-import Highcharts3D from 'highcharts/highcharts-3d'; 
+import Highcharts3D from 'highcharts/highcharts-3d';
+import PropTypes from 'prop-types';
 Highcharts3D(Highcharts);
 
-// eslint-disable-next-line react/prop-types
-const StatusChart = ({seriesData}) => {
+const StatusChart = ({ seriesData, isRequesting }) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
         if (chartRef.current) {
-            Highcharts.chart(chartRef.current, {
+            const chart = Highcharts.chart(chartRef.current, {
                 chart: {
                     type: 'pie',
                     options3d: {
@@ -45,10 +45,26 @@ const StatusChart = ({seriesData}) => {
                     data: seriesData
                 }],
             });
+
+            if (isRequesting) chart.showLoading();
+
+            if (!isRequesting && !(seriesData?.length > 0)) {
+                chart.renderer.text('No data for this range.', 230, 200)
+                    .css({
+                        color: '#718096',
+                        fontSize: '16px'
+                    })
+                    .add();
+            }
         }
-    }, [seriesData]);
+    }, [seriesData, isRequesting]);
 
     return <div ref={chartRef} />;
+};
+
+StatusChart.propTypes = {
+    seriesData: PropTypes.object.isRequired,
+    isRequesting: PropTypes.bool.isRequired,
 };
 
 export default StatusChart;

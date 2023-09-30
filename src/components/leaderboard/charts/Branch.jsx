@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
 const BranchChart = ({ seriesData, type }) => {
     const sortedData = Object.entries(seriesData)
         .sort((a, b) => b[1] - a[1]).slice(0, 10)
@@ -47,6 +47,11 @@ const BranchChart = ({ seriesData, type }) => {
             <HighchartsReact highcharts={Highcharts} options={chartOptions} />
         </div>
     );
+};
+
+BranchChart.propTypes = {
+    seriesData: PropTypes.object.isRequired,
+    type: PropTypes.string,
 };
 
 export default BranchChart;

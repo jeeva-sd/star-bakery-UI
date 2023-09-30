@@ -5,7 +5,7 @@ import OrderCountOverTimeChart from './charts/TimeSeries';
 import StatusChart from './charts/Status';
 
 const Dashboard = () => {
-    const { list, dateParams } = useSelector(state => state.order);
+    const { list, dateParams, isRequesting } = useSelector(state => state.order);
 
     const graphData = useMemo(() => {
         if (!list || list.length === 0) return [];
@@ -100,10 +100,10 @@ const Dashboard = () => {
         <div className='pt-28 bg-slate-100 flex flex-wrap justify-center'>
             <div className='w-full flex flex-wrap justify-center mx-5 gap-5 mb-5'>
                 <div className='rounded-md bg-white p-5 shadow-md lg:w-5/12 md:w-5/12 w-11/12'>
-                    <OrderCountOverTimeChart seriesData={graphData} type={'price'} />
+                    <OrderCountOverTimeChart seriesData={graphData} type={'price'} isRequesting={isRequesting} />
                 </div>
                 <div className='rounded-md bg-white p-5 shadow-md lg:w-5/12 md:w-5/12 w-11/12'>
-                    <StatusChart seriesData={graphData?.statusData} />
+                    <StatusChart seriesData={graphData?.statusData} isRequesting={isRequesting} />
                 </div>
             </div>
 
