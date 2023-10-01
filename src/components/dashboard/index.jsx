@@ -43,9 +43,9 @@ const Dashboard = () => {
             const startDate = moment(dateParams[0]);
             const endDate = moment(dateParams[1]);
             const dateToCheck = moment(lastUpdateTime);
+            const isWithinRange = dateToCheck.isSame(startDate, 'day') || dateToCheck.isBetween(startDate, endDate, null, '[]');
 
-
-            if (dateToCheck.isBetween(startDate, endDate)) {
+            if (isWithinRange) {
                 branchCount[order.branch]++;
                 status[order.orderState]++;
             }

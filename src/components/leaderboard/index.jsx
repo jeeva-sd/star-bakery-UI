@@ -23,7 +23,9 @@ const LeaderBoard = () => {
       const endDate = moment(dateParams[1]);
       const dateToCheck = moment(lastUpdateTime);
 
-      if (dateToCheck.isBetween(startDate, endDate)) {
+      const isWithinRange = dateToCheck.isSame(startDate, 'day') || dateToCheck.isBetween(startDate, endDate, null, '[]');
+
+      if (isWithinRange) {
         if (itemType === 'Cake') cake++;
         else if (itemType === 'Cookies') cookie++;
         else if (itemType === 'Muffins') Muffin++;
