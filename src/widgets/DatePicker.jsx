@@ -26,7 +26,6 @@ const DatePicker = ({ hasReport }) => {
                 endDate={endDate}
                 onChange={(update) => {
                     setDateRange(update);
-                    console.log(update, 'update');
                     dispatch(updateDateParams(update));
                 }}
                 withPortal
